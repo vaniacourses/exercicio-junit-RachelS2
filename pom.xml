@@ -59,26 +59,95 @@
                 </configuration>
             </plugin>
 
-            <!-- JaCoCo para cobertura -->
+            <!-- JaCoCo para cobertura (configurado para localizar fontes e classes) -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${jacoco.version}</version>
+
                 <executions>
+                    <!-- instrumenta a JVM durante os testes -->
                     <execution>
+                        <id>prepare-agent</id>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
+
+                    <!-- gera o relatório após os testes; configurado para encontrar fontes -->
                     <execution>
                         <id>report</id>
-                        <phase>test</phase>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
+                        <configuration>
+                            <!-- garante uso do arquivo de execução padrão -->
+                            <dataFile>${project.build.directory}/jacoco.exec</dataFile>
+
+                            <!-- onde ficará o relatório -->
+                            <outputDirectory>${project.build.directory}/site/jacoco</outputDirectory>
+
+                            <!-- diretório das classes compiladas -->
+                            <classesDirectory>${project.build.outputDirectory}</classesDirectory>
+
+                            <!-- diretórios de fonte para que o report pinte as linhas corretamente -->
+                            <sourceDirectories>
+                                <directory>${project.basedir}/src/main/java</directory>
+                            </sourceDirectories>
+
+                            <!-- gerar também XML (útil para submissão/CI) e CSV -->
+                            <reports>
+                                <xml>true</xml>
+                                <csv>true</csv>
+                                <html>true</html>
+                            </reports>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
+            <!-- PITest (mutation testing) -->
+            <plugin>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-maven</artifactId>
+            <version>1.20.0</version> <!-- ou 'LATEST' se preferir; escolha uma versão recente -->
+            <dependencies>
+                <!-- plugin para JUnit5: necessário se você usa JUnit 5 -->
+                <dependency>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-junit5-plugin</artifactId>
+                <version>1.2.3</version>
+                </dependency>
+            </dependencies>
+            <configuration>
+                <!-- altere conforme seu pacote / classes alvo -->
+                <targetClasses>
+                <!-- exemplo: todas as classes do pacote calculadora -->
+                <param>main.java.calculadora.*</param>
+                </targetClasses>
+
+                <!-- quais testes devem ser executados (opcional) -->
+                <targetTests>
+                <param>test.java.calculadora.*</param>
+                </targetTests>
+
+                <!-- pasta onde o relatório será escrito -->
+                <outputFormats>
+                <param>HTML</param>
+                <param>XML</param>
+                </outputFormats>
+
+                <!-- acelerar: reduzir número de mutators (opcional) -->
+                <!-- <mutators>DEFAULTS</mutators> -->
+
+                <!-- tempo máximo por mutante (ms) -->
+                <timeoutConst>4000</timeoutConst>
+
+                <!-- evitar relatórios com timestamped folders -->
+                <timestampedReports>false</timestampedReports>
+            </configuration>
+            </plugin>
+
         </plugins>
     </build>
 </project>

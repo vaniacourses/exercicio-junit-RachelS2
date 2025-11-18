@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * - Testes agrupados (assertAll) para comparar vários casos da função compara
  */
 @DisplayName("Calculadora - testes avançados e de propriedade")
-public class CalculadoraAdvancedTest {
+public class CalculadoraGPTTest {
 
     private Calculadora calc;
 

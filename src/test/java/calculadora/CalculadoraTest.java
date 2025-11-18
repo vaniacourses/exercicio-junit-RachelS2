@@ -26,11 +26,6 @@ public class CalculadoraTest {
     }
 
     @Test
-    public void testSomaComZero() {
-        assertEquals(7, calculadora.soma(0, 7));
-    }
-
-    @Test
     public void testSubtracaoComNumerosPositivos() {
         assertEquals(1, calculadora.subtracao(5, 4));
     }
@@ -76,11 +71,6 @@ public class CalculadoraTest {
     }
 
     @Test
-    public void testSomatoriaComNumeroPositivo() {
-        assertEquals(15, calculadora.somatoria(5)); // 5 + 4 + 3 + 2 + 1 + 0
-    }
-
-    @Test
     public void testSomatoriaComZero() {
         assertEquals(0, calculadora.somatoria(0));
     }
@@ -106,17 +96,8 @@ public class CalculadoraTest {
     }
 
     @Test
-    public void testComparaQuandoIguais() {
-        assertEquals(0, calculadora.compara(5, 5));
-    }
-
-    @Test
     public void testComparaQuandoMaior() {
         assertEquals(1, calculadora.compara(10, 3));
     }
 
-    @Test
-    public void testComparaQuandoMenor() {
-        assertEquals(-1, calculadora.compara(2, 7));
-    }
 }

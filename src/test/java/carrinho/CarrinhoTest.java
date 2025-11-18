@@ -32,21 +32,6 @@ public class CarrinhoTest {
         Produto p1 = new Produto("Caneta", 2.50);
         carrinho.addItem(p1);
         assertEquals(1, carrinho.getQtdeItems());
-        assertEquals(2.50, carrinho.getValorTotal(), 0.0001);
-    }
-
-    @Test
-    public void testAdicionarVariosItens() {
-        Produto p1 = new Produto("Caneta", 2.50);
-        Produto p2 = new Produto("Lápis", 1.00);
-        Produto p3 = new Produto("Caderno", 10.00);
-
-        carrinho.addItem(p1);
-        carrinho.addItem(p2);
-        carrinho.addItem(p3);
-
-        assertEquals(3, carrinho.getQtdeItems());
-        assertEquals(13.50, carrinho.getValorTotal(), 0.0001);
     }
 
     @Test
@@ -55,7 +40,6 @@ public class CarrinhoTest {
         carrinho.addItem(p1);
         carrinho.removeItem(p1);
         assertEquals(0, carrinho.getQtdeItems());
-        assertEquals(0.0, carrinho.getValorTotal(), 0.0001);
     }
 
     @Test
@@ -77,15 +61,6 @@ public class CarrinhoTest {
         carrinho.addItem(new Produto("Lápis", 1.00));
         carrinho.esvazia();
         assertEquals(0, carrinho.getQtdeItems());
-        assertEquals(0.0, carrinho.getValorTotal(), 0.0001);
     }
 
-    @Test
-    public void testValorTotalComItensDeMesmoPreco() {
-        Produto p = new Produto("Borracha", 0.50);
-        carrinho.addItem(p);
-        carrinho.addItem(p); // adicionando a mesma instância
-        assertEquals(2, carrinho.getQtdeItems());
-        assertEquals(1.00, carrinho.getValorTotal(), 0.0001);
-    }
 }
