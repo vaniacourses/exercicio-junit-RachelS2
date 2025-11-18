@@ -1,0 +1,6 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+exercicio-junit-rachel,main.java.calculadora,Calculadora,0,55,0,8,0,18,0,12,0,8
+exercicio-junit-rachel,main.java.produto,Produto,8,22,0,0,4,7,2,4,2,4
+exercicio-junit-rachel,main.java.produto,ProdutoNaoEncontradoException,0,3,0,0,0,2,0,1,0,1
+exercicio-junit-rachel,main.java.jokenpo,Jokenpo,0,38,0,14,0,9,0,9,0,2
+exercicio-junit-rachel,main.java.carrinho,Carrinho,0,53,0,4,0,17,0,8,0,6
